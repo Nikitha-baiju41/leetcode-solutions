@@ -1,0 +1,162 @@
+LeetCode Pandas Solutions — 2877 to 2891
+Date: 27 October 2026
+Language: Pandas (Python)
+
+============================================================
+2877. Create a DataFrame from List
+File: 2877_create_dataframe_from_list.py
+============================================================
+import pandas as pd
+
+def createDataframe(student_data: list[list[int]]) -> pd.DataFrame:
+    return pd.DataFrame(student_data, columns=["student_id", "age"])
+
+
+============================================================
+2878. Get the Size of a DataFrame
+File: 2878_get_the_size_of_a_dataframe.py
+============================================================
+def getDataframeSize(players: pd.DataFrame) -> list[int]:
+    return list(players.shape)
+
+
+============================================================
+2879. Display the First Three Rows
+File: 2879_display_the_first_three_rows.py
+============================================================
+def selectFirstRows(employees: pd.DataFrame) -> pd.DataFrame:
+    return employees.head(3)
+
+
+============================================================
+2880. Select Data
+File: 2880_select_data.py
+============================================================
+def selectData(students: pd.DataFrame) -> pd.DataFrame:
+    return students.loc[students["student_id"] == 101, ["name", "age"]]
+
+
+============================================================
+2881. Create a New Column
+File: 2881_create_a_new_column.py
+============================================================
+def createBonusColumn(employees: pd.DataFrame) -> pd.DataFrame:
+    employees["bonus"] = employees["salary"] * 2
+    return employees
+
+
+============================================================
+2882. Drop Duplicate Rows
+File: 2882_drop_duplicate_rows.py
+============================================================
+def dropDuplicateEmails(customers: pd.DataFrame) -> pd.DataFrame:
+    return customers.drop_duplicates(subset=["email"], keep="first")
+
+
+============================================================
+2883. Drop Missing Data
+File: 2883_drop_missing_data.py
+============================================================
+def dropMissingData(students: pd.DataFrame) -> pd.DataFrame:
+    return students.dropna(subset=["name"])
+
+
+============================================================
+2884. Modify Columns
+File: 2884_modify_columns.py
+============================================================
+def modifySalaryColumn(employees: pd.DataFrame) -> pd.DataFrame:
+    employees["salary"] = employees["salary"] * 2
+    return employees
+
+
+============================================================
+2885. Rename Columns
+File: 2885_rename_columns.py
+============================================================
+def renameColumns(students: pd.DataFrame) -> pd.DataFrame:
+    return students.rename(columns={
+        "id": "student_id",
+        "first": "first_name",
+        "last": "last_name",
+        "age": "age_in_years"
+    })
+
+
+============================================================
+2886. Change Data Type
+File: 2886_change_data_type.py
+============================================================
+def changeDatatype(students: pd.DataFrame) -> pd.DataFrame:
+    students["grade"] = students["grade"].astype(int)
+    return students
+
+
+============================================================
+2887. Fill Missing Data
+File: 2887_fill_missing_data.py
+============================================================
+def fillMissingValues(products: pd.DataFrame) -> pd.DataFrame:
+    products["quantity"] = products["quantity"].fillna(0)
+    return products
+
+
+============================================================
+2888. Reshape Data: Concatenate
+File: 2888_reshape_data_concatenate.py
+============================================================
+import pandas as pd
+
+def concatenate(df1: pd.DataFrame, df2: pd.DataFrame) -> pd.DataFrame:
+    return pd.concat([df1, df2], ignore_index=True)
+
+
+============================================================
+2889. Reshape Data: Pivot
+File: 2889_reshape_data_pivot.py
+============================================================
+def pivotTable(weather: pd.DataFrame) -> pd.DataFrame:
+    return weather.pivot(
+        index="month",
+        columns="city",
+        values="temperature"
+    ).reset_index().rename_axis(columns=None)
+
+Note:
+reset_index() makes "month" a regular output column, as required by
+LeetCode's expected result. The numeric values shown at the far left
+(0, 1, 2, ...) are only the DataFrame row index, not an extra column.
+Do not remove reset_index() for the LeetCode submission, or "month"
+will remain the index instead of a regular column.
+
+
+============================================================
+2890. Reshape Data: Melt
+File: 2890_reshape_data_melt.py
+============================================================
+def meltTable(report: pd.DataFrame) -> pd.DataFrame:
+    return report.melt(
+        id_vars=["product"],
+        var_name="quarter",
+        value_name="sales"
+    )
+
+
+============================================================
+2891. Method Chaining
+File: 2891_method_chaining.py
+============================================================
+def findHeavyAnimals(animals: pd.DataFrame) -> pd.DataFrame:
+    return animals[animals["weight"] > 100].sort_values(
+        "weight", ascending=False
+    )[["name"]]
+
+
+============================================================
+End of solutions
+============================================================
+
+LeetCode note:
+LeetCode provides the Pandas environment and the DataFrame variables for each
+problem. Paste the corresponding function into the matching problem submission.
+The import pandas as pd line is included only where the solution needs it.
